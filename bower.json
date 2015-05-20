@@ -1,0 +1,11 @@
+{
+  "name": "lpt web",
+  "version": "0.0.0",
+  "homepage": "https://localhost:8483/lptweb",
+  "main": "web/index.html",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+	"highcharts-ng" : ""
+   }
+}
