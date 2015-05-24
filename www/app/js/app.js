@@ -31,7 +31,7 @@ app.run(function()
 
 app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASSETS){
 
-	$urlRouterProvider.otherwise('/app/dashboard-variant-1');
+	$urlRouterProvider.otherwise('/mypreferences');
 
 	$stateProvider.
 		// Main Layout Structure
@@ -47,11 +47,109 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 			}
 		}).
 
+		// Reports
+		state('app.reports-struc-adhoc', {
+			url: '/reports-struc-adhoc',
+			templateUrl: appHelper.templatePath('reports/sah'),
+			resolve: {
+				fwDependencies: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.core.bootstrap,
+						ASSETS.core.jQueryUI,
+						ASSETS.forms.jQueryValidate,
+						ASSETS.forms.inputmask,
+						ASSETS.forms.multiSelect,
+						ASSETS.forms.datepicker,
+						ASSETS.forms.selectboxit,
+						ASSETS.forms.formWizard,
+					]);
+				},
+				formWizard: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+					]);
+				},
+			},
+		}).
 
+
+		state('app.reports-struc-adhoc-m', {
+			url: '/reports-struc-adhoc-m',
+			templateUrl: appHelper.templatePath('reports/sah-mobile'),
+			resolve: {
+				fwDependencies: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.core.bootstrap,
+						ASSETS.core.jQueryUI,
+						ASSETS.forms.jQueryValidate,
+						ASSETS.forms.inputmask,
+						ASSETS.forms.multiSelect,
+						ASSETS.forms.datepicker,
+						ASSETS.forms.selectboxit,
+						ASSETS.forms.formWizard,
+					]);
+				},
+				formWizard: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+					]);
+				},
+			},
+		}).
+
+		// Reports
+		state('app.reports-report-browser', {
+			url: '/reports-report-browser',
+			templateUrl: appHelper.templatePath('reports/reportBrowser'),
+			resolve: {
+				resources: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.charts.dxGlobalize,
+						ASSETS.extra.toastr,
+					]);
+				},
+				dxCharts: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.charts.dxCharts,
+					]);
+				},
+			}
+		}).
+
+		// My Preferences
+		state('mypreferences', {
+			url: '/mypreferences',
+			templateUrl: appHelper.templatePath('mypref'),
+			controller: 'MyPreferenceCtrl',
+			resolve: {
+				resources: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.forms.jQueryValidate
+					]);
+				},
+				select2: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.forms.select2,
+					]);
+				},
+
+			}
+		}).
 
 
 
 		// Dashboards
+		state('app.main', {
+			url: '/main',
+			templateUrl: appHelper.templatePath('dashboards/main'),
+			controller: 'HomeCtrl',
+			resolve: {
+				resources: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.carousel
+					]);
+				}
+			}
+		}).
+
 		state('app.dashboard-variant-1', {
 			url: '/dashboard-variant-1',
 			templateUrl: appHelper.templatePath('dashboards/variant-1'),
@@ -829,6 +927,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 });
 
 
+
+// ASSETS
 app.constant('ASSETS', {
 	'core': {
 		'bootstrap': appHelper.assetPath('js/bootstrap.min.js'), // Some plugins which do not support angular needs this
@@ -844,11 +944,17 @@ app.constant('ASSETS', {
 	},
 
 	'charts': {
-
+		'highCharts':appHelper.assetPath('components/highcharts-ng/dist/highcharts-ng.min.js'),
 		'dxGlobalize': appHelper.assetPath('js/devexpress-web-14.1/js/globalize.min.js'),
 		'dxCharts': appHelper.assetPath('js/devexpress-web-14.1/js/dx.chartjs.js'),
 		'dxVMWorld': appHelper.assetPath('js/devexpress-web-14.1/js/vectormap-data/world.js'),
 	},
+	'carousel' : [
+		appHelper.assetPath('components/slick-carousel/slick/slick.css'),
+		appHelper.assetPath('components/slick-carousel/slick/slick-theme.css'),
+		appHelper.assetPath('components/slick-carousel/slick/slick.min.js'),
+		appHelper.assetPath('components/angular-slick/dist/slick.js'),
+	],
 
 	'xenonLib': {
 		notes: appHelper.assetPath('js/xenon-notes.js'),

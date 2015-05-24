@@ -11,6 +11,80 @@ angular.module('xenon.controllers', []).
 
 	}).
 
+	controller('MyPreferenceCtrl', function($scope, $rootScope, $lptServices)
+	{
+		$rootScope.isLoginPage        = false;
+		$rootScope.isLightLoginPage   = false;
+		$rootScope.isLockscreenPage   = false;
+		$rootScope.isMainPage         = false;
+
+		$scope.userInfo = $lptServices.getUserInfo();
+		$scope.regionList = $lptServices.getRegionList();
+		$scope.marketList = $lptServices.getMarketList();
+		$scope.timeZones = $lptServices.getTimeZones();
+
+	}).
+
+	controller('HomeCtrl', function($scope, $rootScope, $lptServices)
+	{
+		$rootScope.isLoginPage        = false;
+		$rootScope.isLightLoginPage   = false;
+		$rootScope.isLockscreenPage   = false;
+		$rootScope.isMainPage         = false;
+
+		$scope.getDate = function() {
+			return new Date();
+		}
+
+
+		$scope.slides = [];
+		$scope.currentDate = "";
+
+
+		$scope.refresh = function() {
+			$scope.slides = [
+				'static/chart1.png',
+				'static/chart2.png',
+				'static/chart3.png',
+				'static/chart4.png',
+				'static/chart5.png',
+				'static/chart6.png',
+				'static/chart7.png',
+				'static/chart8.png',
+				'static/chart9.png',
+				'static/chart10.png',
+				'static/chart11.png',
+				'static/chart12.png',
+				'static/chart13.png',
+				'static/chart14.png',
+				'static/chart15.png',
+			];
+			$scope.currentDate = $scope.getDate();
+		}
+
+
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			$(".slider")
+				.slick({
+					dots: true,
+					infinite: false,
+					speed: 300,
+					slidesToShow: 4,
+					slidesToScroll: 5,
+					width: '250px',
+					height: '250px',
+					autoplay: true,
+					autplaySpeed: 2000
+				});
+			console.log("Finished!");
+		});
+
+
+
+
+	}).
+
+
 	controller('MemberAccountCtrl', function($scope, $rootScope)
 	{
 		$rootScope.isLoginPage        = false;
@@ -18,6 +92,7 @@ angular.module('xenon.controllers', []).
 		$rootScope.isLockscreenPage   = false;
 		$rootScope.isMainPage         = false;
 
+		// TODO: Replace this with ajax call
 		$scope.data = {
 			"page": "1",
 			"total": "1",
@@ -345,18 +420,41 @@ angular.module('xenon.controllers', []).
 		$rootScope.isLockscreenPage   = false;
 		$rootScope.isMainPage         = true;
 
+
+		$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+			console.log('$stateChangeStart to '+toState.to+'- fired when the transition begins. toState,toParams : \n',toState, toParams);
+		});
+		$rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams, error){
+			console.log('$stateChangeError - fired when an error occurs during transition.');
+			console.log(arguments);
+		});
+		$rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+			console.log('$stateChangeSuccess to '+toState.name+'- fired once the state transition is complete.');
+		});
+// $rootScope.$on('$viewContentLoading',function(event, viewConfig){
+//   // runs on individual scopes, so putting it in "run" doesn't work.
+//   console.log('$viewContentLoading - view begins loading - dom not rendered',viewConfig);
+// });
+		$rootScope.$on('$viewContentLoaded',function(event){
+			console.log('$viewContentLoaded - fired after dom rendered',event);
+		});
+		$rootScope.$on('$stateNotFound',function(event, unfoundState, fromState, fromParams){
+			console.log('$stateNotFound '+unfoundState.to+'  - fired when a state cannot be found by its name.');
+			console.log(unfoundState, fromState, fromParams);
+		});
+
 		$rootScope.layoutOptions = {
 			horizontalMenu: {
-				isVisible		: false,
+				isVisible		: true,
 				isFixed			: true,
-				minimal			: false,
+				minimal			: true,
 				clickToExpand	: false,
 
 				isMenuOpenMobile: false
 			},
 			sidebar: {
 				isVisible		: true,
-				isCollapsed		: false,
+				isCollapsed		: true,
 				toggleOthers	: true,
 				isFixed			: true,
 				isRight			: false,
@@ -502,7 +600,7 @@ angular.module('xenon.controllers', []).
 
 		ps_init(); // perfect scrollbar for sidebar
 	}).
-	controller('HorizontalMenuCtrl', function($scope, $rootScope, $menuItems, $timeout, $location, $state)
+	controller('HorizontalMenuCtrl', function($scope, $rootScope, $menuItems, $timeout, $location, $state, $lptServices)
 	{
 		var $horizontalMenuItems = $menuItems.instantiate();
 
@@ -518,6 +616,8 @@ angular.module('xenon.controllers', []).
 			$(".navbar.horizontal-menu .navbar-nav .hover").removeClass('hover'); // Close Submenus when item is selected
 		});
 
+		$scope.alertItems = $lptServices.getAlerts();
+
 		// Trigger menu setup
 		$timeout(setup_horizontal_menu, 1);
 	}).
@@ -527,6 +627,9 @@ angular.module('xenon.controllers', []).
 		public_vars.$settingsPane = public_vars.$body.find('.settings-pane');
 		public_vars.$settingsPaneIn = public_vars.$settingsPane.find('.settings-pane-inner');
 	}).
+
+
+	// TODO: Remove this
 	controller('ChatCtrl', function($scope, $element)
 	{
 		var $chat = jQuery($element),
@@ -556,6 +659,9 @@ angular.module('xenon.controllers', []).
 			$chat_conv.removeClass('is-open');
 		});
 	}).
+
+
+	// TODO: Remove this
 	controller('UIModalsCtrl', function($scope, $rootScope, $modal, $sce)
 	{
 		// Open Simple Modal
@@ -588,6 +694,8 @@ angular.module('xenon.controllers', []).
 			$rootScope.modalContent = $sce.trustAsHtml('Modal content is loading...');
 		}
 	}).
+
+
 	controller('PaginationDemoCtrl', function($scope)
 	{
 		$scope.totalItems = 64;
@@ -771,6 +879,8 @@ angular.module('xenon.controllers', []).
 			}
 		});
 	}).
+
+	//TODO: Remove this
 	// Added in v1.3
 	controller('FooterChatCtrl', function($scope, $element)
 	{

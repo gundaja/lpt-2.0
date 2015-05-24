@@ -2,10 +2,15 @@
   "name": "lpt web",
   "version": "0.0.0",
   "homepage": "https://localhost:8483/lptweb",
-  "main": "web/index.html",
+  "main": "www/index.html",
   "license": "MIT",
   "private": true,
+  "directory" : "www/assets",
   "dependencies": {
-	"highcharts-ng" : ""
-   }
+    "highcharts-ng" : "",
+    "roboto-fontface" : "",
+    "slick-carousel": "",
+    "angular-slick": "",
+    "ng-js-tree": ""
+  }
 }

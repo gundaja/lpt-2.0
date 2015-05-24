@@ -1,0 +1,50 @@
+<style>
+	.slider {
+		min-height: 250px;
+		background: #fff none repeat scroll 0 0;
+	}
+
+	.slick-slide {
+		background: #fff none repeat scroll 0 0;
+	}
+
+	.slider img {
+		max-height: 250px;
+		max-width: 250px;
+	}
+
+
+</style>
+
+	<div class="row">
+		<!-- Default panel -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Performance Charts &nbsp;<small>as of {{currentDate | date:'yyyy-MM-dd HH:mm:ss'}}</small></h3>
+
+				<div class="panel-options">
+					<a href="" data-toggle="reload" ng-click="refresh()">
+						<i class="fa-rotate-right"></i>
+					</a>
+
+					<a href="" data-toggle="panel">
+						<span class="collapse-icon">&ndash;</span>
+						<span class="expand-icon">+</span>
+					</a>
+				</div>
+			</div>
+
+			<div class="panel-body" ng-init="refresh()">
+				<slick class="slider single-item" dots="true" infinite="true" touch-move=true >
+					<div ng-repeat="m in slides" on-finish-render="ngRepeatFinished"><img data-lazy="{{m}}"></div>
+				</slick>
+
+			</div>
+		</div>
+
+
+
+	<div class="container">
+
+		</div>
+</div>

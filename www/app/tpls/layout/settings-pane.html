@@ -7,42 +7,7 @@
 	<div class="settings-pane-inner">
 		
 		<div class="row">
-			
-			<div class="col-md-4">
-				
-				<div class="user-info">
-					
-					<div class="user-image">
-						<a href="extra-profile.html">
-							<img src="assets/images/user-2.png" class="img-responsive img-circle" />
-						</a>
-					</div>
-					
-					<div class="user-details">
-						
-						<h3>
-							<a href="extra-profile.html">Jayson Gundayao</a>
-							
-							<!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
-							<span class="user-status is-online"></span>
-						</h3>
-						
-						<!--
-						<div class="user-links">
-							<a href="extra-profile.html" class="btn btn-primary">Edit Profile</a>
-							<a href="extra-profile.html" class="btn btn-success">Upgrade</a>
-						</div>
-						-->
-						
-					</div>
-					
-				</div>
-				
-			</div>
-
-
-			
-			<div class="col-md-8 link-blocks-env">
+			<div class="col-md-10 link-blocks-env">
 				
 				<div class="links-block left-sep">
 					<h4>
@@ -89,6 +54,10 @@
 						</li>
 						<li>
 							<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
+							<label for="sp-chk4">eNodeBs</label>
+						</li>
+						<li>
+							<input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
 							<label for="sp-chk4">Cell Groups</label>
 						</li>
 
@@ -126,10 +95,39 @@
 						</li>
 					</ul>
 				</div>
+
+
+				<div class="links-block left-sep">
+					<h4>
+						<a href="">
+							<span>Theme</span>
+						</a>
+					</h4>
+
+					<form ng-controller="ThemeSkinsCtrl">
+					<ul class="list-unstyled">
+						<li>
+							<label for="sb-theme">Settings Pane</label>
+							<select ng-model="opts.sidebarSkin" class="form-control" id="sb-theme">
+								<option ng-repeat="skin in skins" value="{{skin.value}}" ng-selected="{{skin.value == opts.sidebarSkin}}">{{skin.name}}</option>
+							</select>
+						</li>
+
+						<li>
+							<label for="sb-theme">Main Menu</label>
+							<select ng-model="opts.horizontalMenuSkin" class="form-control">
+								<option ng-repeat="skin in skins" value="{{skin.value}}" ng-selected="{{skin.value == opts.horizontalMenuSkin}}">{{skin.name}}</option>
+							</select>
+						</li>
+					</ul>
+					</form>
+				</div>
 				
 			</div>
 			
 		</div>
+
+
 	
 	</div>
 	
