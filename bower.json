@@ -11,6 +11,8 @@
     "roboto-fontface" : "",
     "slick-carousel": "",
     "angular-slick": "",
+    "bootstrap-duallistbox":"",
+    "angular-bootstrap-duallistbox":"~0.0.2",
     "ng-js-tree": ""
   }
 }

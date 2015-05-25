@@ -2,7 +2,7 @@
 
 
 <!-- Tabbed panel -->
-<div class="container" style="padding:20px">
+<div class="container" style="padding:20px" id="mypref">
     <div ng-init="tabbed_panel_active = 1;" class="panel panel-default panel-tabs">
         <!-- Add class "collapsed" to minimize the panel -->
         <div class="panel-heading">
@@ -27,6 +27,7 @@
             <div class="tab-content">
 
                 <div class="tab-pane" ng-class="{'active': tabbed_panel_active == 1}">
+		    <form role="form" class="validate ng-pristine ng-valid" method="post">
                     <section class="profile-env">
 
                         <div class="row">
@@ -78,7 +79,6 @@
                             </div>
 
                             <div class="col-sm-8">
-                                <form role="form" class="validate ng-pristine ng-valid" method="post">
 
                                     <!--
                                     <label class="control-label">Select list</label>
@@ -175,7 +175,6 @@
 
                                         </div>
                                     </div>
-                                </form>
 
                             </div>
 
@@ -186,68 +185,35 @@
                 </div>
 
                 <div class="tab-pane" ng-class="{'active': tabbed_panel_active == 2}">
-                    <div class="row form-group">
-                        <div class="col-sm-4">
+                    <div class="bootstrap-duallistbox-container row form-group">
                             <label>All MME Pools:</label>
                             <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                    id="selSwitch" class="form-control" required="">
+                                    id="selSwitch" class="form-control" required="" bs-dualListbox>
                             </select>
-                        </div>
-
-                        <div class="col-sm-2">
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label>My MME Pools:</label>
-                            <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                    id="selSwitch" class="form-control" required="">
-                            </select>
-                        </div>
                     </div>
 
-                <div class="row form-group">
-                    <div class="col-sm-4">
+                    <div class="bootstrap-duallistbox-container row form-group">
                         <label>All Markets:</label>
-                        <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                id="selSwitch" class="form-control" required="">
+                        <select ng-model="regionList[0]" multiple="multiple" ng-options="m as m for m in marketList"
+                                id="selSwitch" class="form-control" required="" bs-dualListbox>
                         </select>
-                    </div>
-
-                    <div class="col-sm-2">
-                    </div>
+                    </div>  
 
 
-                    <div class="col-sm-4">
-                        <label>My LTE Markets:</label>
-                        <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                id="selSwitch" class="form-control" required="">
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="row form-group">
-                    <div class="col-sm-4">
+		    <div class="bootstrap-duallistbox-container row form-group">
                         <label>All Markets:</label>
-                        <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                id="selSwitch" class="form-control" required="">
+                        <select ng-model="regionList[0]" multiple="multiple" ng-options="m as m for m in marketList"
+                                id="selSwitch" class="form-control" required="" bs-dualListbox>
                         </select>
-                    </div>
-
-                    <div class="col-sm-2">
-                    </div>
-
-
-                    <div class="col-sm-4">
-                        <label>My LTE Markets for Perf Charts:</label>
-                        <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
-                                id="selSwitch" class="form-control" required="">
-                        </select>
-                    </div>
-                </div>
+                    </div> 
             </div>
+            
+            
+            <div ng-repeat="m in regionList" on-finish-render="ngRepeatFinished">
+
 
         </div>
+	</form>
     </div>
         <div class="panel-footer">
             <button type="submit" class="btn btn-success btn-block">Save</button>

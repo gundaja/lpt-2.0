@@ -22,6 +22,15 @@ angular.module('xenon.controllers', []).
 		$scope.regionList = $lptServices.getRegionList();
 		$scope.marketList = $lptServices.getMarketList();
 		$scope.timeZones = $lptServices.getTimeZones();
+		
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			 $("#mypref [bs-duallistbox]").bootstrapDualListbox({
+                                preserveSelectionOnMove: 'moved',
+                                moveOnSelect: true,
+				selectorMinimalHeight: 30
+                        });
+		});
+
 
 	}).
 

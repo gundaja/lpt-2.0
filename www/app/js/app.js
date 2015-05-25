@@ -130,6 +130,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 						ASSETS.forms.select2,
 					]);
 				},
+				multiSelect: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.forms.dualListbox,
+					]);
+				}
 
 			}
 		}).
@@ -1024,9 +1029,16 @@ app.constant('ASSETS', {
 			appHelper.assetPath('js/handlebars.min.js'),
 		],
 
+		'dualListbox': [
+			appHelper.assetPath('components/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js'),
+			appHelper.assetPath('components/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css'),
+			appHelper.assetPath('components/angular-bootstrap-duallistbox/dist/angular-bootstrap-duallistbox.min.js'),
+		],
+
 		'multiSelect': [
 			appHelper.assetPath('js/multiselect/css/multi-select.css'),
 			appHelper.assetPath('js/multiselect/js/jquery.multi-select.js'),
+			appHelper.assetPath('components/angular-bootstrap-duallistbox/dist/angular-bootstrap-duallistbox.min.js'),
 		],
 
 		'icheck': [
