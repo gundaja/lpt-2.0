@@ -33,6 +33,55 @@ angular.module('xenon.controllers', []).
 
 
 	}).
+	
+	controller('ReportBrowserCtrl', function($scope, $rootScope, $lptServices)
+	{
+		$rootScope.isLoginPage        = false;
+		$rootScope.isLightLoginPage   = false;
+		$rootScope.isLockscreenPage   = false;
+		$rootScope.isMainPage         = false;
+
+		$lptServices.getUserReportsPerRegion().then(function(result) {
+			//$scope.resize();
+
+			$('#jtree').jstree({
+				'core' : {
+						'data' : result.data
+				},
+				"plugins" : [
+						"search","types", "wholerow"
+				],
+				"ui": {
+					"select_limit": 1,
+				}
+			});
+		});
+		
+		
+		$('#jtree').on("changed.jstree", function (e, data) {
+                console.log("The selected nodes are:");
+                console.log(data.selected);
+                console.log(e);
+
+
+                service.getReportsByUser(data.selected).then(function(result) {
+                        $scope.refreshGrid(result.data.reports.report);
+                });
+         });
+
+        $scope.treeSearch = function() {
+                $("#jtree").jstree(true).search($scope.textSearch);
+
+                // Scroll to the first search item
+                var el = $('#jtree .jstree-search')[0];
+                if (el) {
+                        var pos = el.offsetTop;
+                        $("#jtree").scrollTop(pos);
+                }
+        }
+
+	}).
+
 
 	controller('HomeCtrl', function($scope, $rootScope, $lptServices)
 	{
@@ -87,10 +136,6 @@ angular.module('xenon.controllers', []).
 				});
 			console.log("Finished!");
 		});
-
-
-
-
 	}).
 
 
@@ -100,311 +145,6 @@ angular.module('xenon.controllers', []).
 		$rootScope.isLightLoginPage   = false;
 		$rootScope.isLockscreenPage   = false;
 		$rootScope.isMainPage         = false;
-
-		// TODO: Replace this with ajax call
-		$scope.data = {
-			"page": "1",
-			"total": "1",
-			"records": "17",
-			"rows": [
-				{
-					"id": "1",
-					"cell": [
-						"1",
-						"tamada",
-						"test1",
-						"??",
-						"??",
-						"tamada@acornsoft.co.jp",
-						"junzo.tamada@gmail.com",
-						"1",
-						"2014-05-24 12:00:00",
-						"2015-01-02 06:36:55",
-						"1",
-						""
-					]
-				},
-				{
-					"id": "2",
-					"cell": [
-						"2",
-						"yama2ee@yahoo.co.jp",
-						"test1",
-						"??",
-						"??",
-						"yama2ee@yahoo.co.jp",
-						"yama2ee@yahoo.co.jp",
-						"1",
-						"2014-06-25 12:01:01",
-						"2015-01-02 06:38:03",
-						"1",
-						""
-					]
-				},
-				{
-					"id": "3",
-					"cell": [
-						"3",
-						"mickeyhaller",
-						"test1",
-						"Haller",
-						"Mickey",
-						"mickey7777a@yahoo.co.jp",
-						"mickey7777a@yahoo.co.jp",
-						"3",
-						"2014-05-24 12:02:02",
-						"2015-01-02 06:38:20",
-						"1",
-						"CA_LAWYER_20081092"
-					]
-				},
-				{
-					"id": "4",
-					"cell": [
-						"4",
-						"harrybosch",
-						"test1",
-						"Bosch",
-						"Harry",
-						"harry7777a@yahoo.co.jp",
-						"harry7777a@yahoo.co.jp",
-						"15",
-						"2014-06-25 12:03:03",
-						"2015-01-02 06:38:36",
-						"1",
-						""
-					]
-				},
-				{
-					"id": "5",
-					"cell": [
-						"5",
-						"tomoya@onekarte.com",
-						"test1",
-						"Yamashiki",
-						"Tomoya",
-						"tomoya@onekarte.com",
-						null,
-						"15",
-						"2014-06-25 12:04:04",
-						"2014-06-25 12:04:04",
-						"1",
-						null,
-						null
-					]
-				},
-				{
-					"id": "6",
-					"cell": [
-						"6",
-						"alan@onekarte.com",
-						"test1",
-						"Arguelles",
-						"Alan",
-						"alan@onekarte.com",
-						null,
-						"15",
-						"2014-05-24 12:05:05",
-						"2014-05-24 12:05:05",
-						"1",
-						null,
-						null
-					]
-				},
-				{
-					"id": "7",
-					"cell": [
-						"7",
-						"masa@onekarte.com",
-						"test1",
-						"Yamasaki",
-						"Masa",
-						"masa@onekarte.com",
-						null,
-						"15",
-						"2014-05-24 12:06:06",
-						"2014-05-24 12:06:06",
-						"1",
-						null,
-						null
-					]
-				},
-				{
-					"id": "8",
-					"cell": [
-						"8",
-						"aarguell",
-						"test1",
-						"arguelles",
-						"Alan",
-						"aarguell4@gmail.com",
-						"alan@onekarte.com",
-						"15",
-						"2015-01-09 22:49:44",
-						"2015-01-09 22:49:44",
-						"1",
-						"1"
-					]
-				},
-				{
-					"id": "9",
-					"cell": [
-						"9",
-						"tamada_2012@yahoo.co.jp",
-						"1PPMJ0JA",
-						"tamada",
-						"Kim",
-						"tamada_2012@yahoo.co.jp",
-						null,
-						null,
-						"2015-1-25 2:36:44",
-						"",
-						"0",
-						null,
-						null
-					]
-				},
-				{
-					"id": "11",
-					"cell": [
-						"11",
-						"ok.invite@kapay.net",
-						"IKEVIE8I",
-						"invite",
-						"ok",
-						"ok.invite@kapay.net",
-						null,
-						null,
-						"2015-3-31 8:11:54",
-						"",
-						"0",
-						null,
-						null
-					]
-				},
-				{
-					"id": "12",
-					"cell": [
-						"12",
-						"aarguell4",
-						"test1",
-						"arguell",
-						"al",
-						"aarguell4@gmail.com",
-						"aarguell4@gmail.com",
-						"1",
-						"2015-04-15 04:16:38",
-						"2015-04-15 04:16:38",
-						"1",
-						"1",
-						""
-					]
-				},
-				{
-					"id": "13",
-					"cell": [
-						"13",
-						"thierry.porte@gmail.com",
-						"test1",
-						"Porte",
-						"Thierry",
-						"thierry.porte@gmail.com",
-						"thierry.porte@gmail.com",
-						"15",
-						"2015-05-07 23:08:18",
-						"2015-05-07 23:17:23",
-						"1",
-						"1",
-						""
-					]
-				},
-				{
-					"id": "14",
-					"cell": [
-						"14",
-						"yamada@neo-logis.co.jp",
-						"test1",
-						"Yamada",
-						"Tomonobu",
-						"yamada@neo-logis.co.jp",
-						"yamada@neo-logis.co.jp",
-						"15",
-						"2015-05-07 23:19:23",
-						"2015-05-07 23:19:23",
-						"1",
-						"1"
-					]
-				},
-				{
-					"id": "15",
-					"cell": [
-						"15",
-						"t-takeuchi@smiloop.co.jp",
-						"test1",
-						"Takeuchi",
-						"Mr ",
-						"t-takeuchi@smiloop.co.jp",
-						"t-takeuchi@smiloop.co.jp",
-						"15",
-						"2015-05-07 23:21:11",
-						"2015-05-07 23:21:35",
-						"1",
-						"1"
-					]
-				},
-				{
-					"id": "16",
-					"cell": [
-						"16",
-						"tgk-katou@t-gk.co.jp",
-						"test1",
-						"Katou",
-						"Mr",
-						"tgk-katou@t-gk.co.jp",
-						"tgk-katou@t-gk.co.jp",
-						"15",
-						"2015-05-07 23:22:11",
-						"2015-05-07 23:22:11",
-						"1",
-						"1"
-					]
-				},
-				{
-					"id": "17",
-					"cell": [
-						"17",
-						"goc.onuma@kib.biglobe.ne.jp",
-						"test1",
-						"Onuma",
-						"Mr",
-						"goc.onuma@kib.biglobe.ne.jp",
-						"goc.onuma@kib.biglobe.ne.jp",
-						"15",
-						"2015-05-07 23:23:20",
-						"2015-05-07 23:23:20",
-						"1",
-						"1"
-					]
-				},
-				{
-					"id": "18",
-					"cell": [
-						"18",
-						"nickhoshino@hotmail.com",
-						"test1",
-						"Hoshino",
-						"Nick",
-						"nickhoshino@hotmail.com",
-						"nickhoshino@hotmail.com",
-						"15",
-						"2015-05-07 23:23:57",
-						"2015-05-07 23:23:57",
-						"1",
-						"1"
-					]
-				}
-			]
-		};
 
 	}).
 

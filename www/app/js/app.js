@@ -99,18 +99,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 		state('app.reports-report-browser', {
 			url: '/reports-report-browser',
 			templateUrl: appHelper.templatePath('reports/reportBrowser'),
+			controller: 'ReportBrowserCtrl',
 			resolve: {
-				resources: function($ocLazyLoad){
+				jstree: function($ocLazyLoad){
 					return $ocLazyLoad.load([
-						ASSETS.charts.dxGlobalize,
-						ASSETS.extra.toastr,
+						ASSETS.forms.jstree,
 					]);
-				},
-				dxCharts: function($ocLazyLoad){
-					return $ocLazyLoad.load([
-						ASSETS.charts.dxCharts,
-					]);
-				},
+				}
 			}
 		}).
 
@@ -1033,6 +1028,12 @@ app.constant('ASSETS', {
 			appHelper.assetPath('components/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js'),
 			appHelper.assetPath('components/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css'),
 			appHelper.assetPath('components/angular-bootstrap-duallistbox/dist/angular-bootstrap-duallistbox.min.js'),
+		],
+		
+		'jstree' : [		
+			appHelper.assetPath('components/jstree/dist/themes/default/style.min.css'),
+            appHelper.assetPath('components/jstree/dist/jstree.min.js'),
+			appHelper.assetPath('components/ng-js-tree/dist/ngJsTree.min.js')
 		],
 
 		'multiSelect': [
