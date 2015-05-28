@@ -63,11 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 						ASSETS.forms.selectboxit,
 						ASSETS.forms.formWizard,
 					]);
-				},
-				formWizard: function($ocLazyLoad){
-					return $ocLazyLoad.load([
-					]);
-				},
+				}
 			},
 		}).
 
@@ -104,6 +100,11 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 				jstree: function($ocLazyLoad){
 					return $ocLazyLoad.load([
 						ASSETS.forms.jstree,
+					]);
+				},
+				datepicker: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.forms.datepicker,
 					]);
 				}
 			}

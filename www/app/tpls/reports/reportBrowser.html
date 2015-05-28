@@ -24,16 +24,15 @@
 		<div class="panel-heading"><i class=""></i>View User Reports</div>
 		<div class="panel-body" >
 			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<label>Report name</label>
 					<input ng-model="filter.reportname" ng-change="change()" class="form-control" placeholder="Search for...">
 				</div>
 
-				<div class="col-md-2"></div>
 
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<label for="status">Status</label>
-					<select ng-model="filter.status" ng-options="m as m for m in rb.status"
+					<select ng-model="status" ng-options="m as m for m in filter.status"
 						class="form-control"    required="true" ng-change="change()">
 					</select>
 				</div>
@@ -41,9 +40,18 @@
 
 			<br/>
 			<div class="row row-full-height">
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<label>Date Started</label>
+						<div class="input-group">
+							<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
+
+							<span class="input-group-addon">
+								<a href=""><i class="linecons-calendar"></i></a>
+							</span>
+						</div>
+					<!--
 					<div class="input-group">
+
 						<input type="text" class="form-control" datepicker-popup="{{format}}"
 							ng-model="filter.datestarted" is-open="opened[0]"
 							min-date="minDate"
@@ -53,20 +61,18 @@
 							<button type="button" class="btn btn-default" ng-click="open($event, 0)"><i class="glyphicon glyphicon-calendar"></i></button>
 						</span>
 					</div>
+					-->
 				</div>
 
-				<div class="col-md-2"></div>
 
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<label>Date Ended</label>
 					<div class="input-group">
-						<input type="text" class="form-control" datepicker-popup="{{format}}"
-							ng-model="filter.dateended" is-open="opened[1]"
-							min-date="minDate"
-							datepicker-options="dateOptions"/>
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="open($event, 1)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
+						<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy">
+
+							<span class="input-group-addon">
+								<a href=""><i class="linecons-calendar"></i></a>
+							</span>
 					</div>
 				</div>
 			</div>
@@ -74,8 +80,51 @@
 			<br/>
 
 			<div class="row-full-height">
+				<table class="table table-bordered table-striped table-condensed table-hover responsive">
+					<thead>
+					<tr>
+						<th>Report Name</th>
+						<th>User Name</th>
+						<th>Date Started</th>
+						<th>Date Ended</th>
+						<th>Status</th>
+						<th>CSV</th>
+						<th>PDF</th>
+						<th>Applet</th>
+						<th>rpt</th>
+						<th>pid</th>
+					</tr>
+					</thead>
+
+					<tbody>
+
+					<tr ng-repeat="r in gridItems">
+						<td>{{r.reportname}}</td>
+						<td>{{r.username}}</td>
+						<td>{{r.datestarted}}</td>
+						<td>{{r.dateended}}</td>
+						<td>{{r.status}}</td>
+						<td><a href="{{r.csv}}">link</a></td>
+						<td><a href="{{r.pdf}}">link</a></td>
+						<td><a href="{{r.applet}}">link</a></td>
+						<td><a href="{{r.rpt}}">link</a></td>
+						<td>{{r.pid}}</td>
+					</tr>
+					<!--
+					<tr>
+						<td>1</td>
+						<td>Arlind</td>
+						<td>Nushi</td>
+					</tr>
+					-->
+
+
+					</tbody>
+				</table>
+			<!--
 			<div id="report-grid" ui-grid="gridOptions" ui-grid-selection class="gridStyle"></div>
 			</div>
+			-->
 		</div>
 	</div>
 
