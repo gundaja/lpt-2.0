@@ -1,0 +1,80 @@
+	<page-title ng-if="layoutOptions.pageTitles" title="Member's Account" description=""></page-title>
+
+
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"></h3>
+
+				<div class="panel-options">
+					<a href="">
+						<i class="linecons-cog"></i>
+					</a>
+
+					<a href="" data-toggle="panel">
+						<span class="collapse-icon">&ndash;</span>
+						<span class="expand-icon">+</span>
+					</a>
+
+					<a href="" data-toggle="reload">
+						<i class="fa-rotate-right"></i>
+					</a>
+
+					<a href="" data-toggle="remove">
+						&times;
+					</a>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<div class="table-responsive" data-pattern="priority-columns" data-focus-btn-icon="fa-asterisk" data-sticky-table-header="true" data-add-display-all-btn="true" data-add-focus-btn="true">
+					<table cellspacing="0" class="table table-small-font table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th data-priority="1">Account name</th>
+								<th data-priority="3">Password</th>
+								<th data-priority="1">Last Name</th>
+								<th data-priority="3">First Name</th>
+								<th data-priority="1">Email Address</th>
+								<th data-priority="5">Email for password reset</th>
+								<th data-priority="6">Public Qualification</th>
+								<th data-priority="7">Register Date</th>
+								<th data-priority="8">Last Update</th>
+								<th data-priority="9">Status</th>
+								<th data-priority="10">Qualification ID</th>
+
+							</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="r in data.rows">
+							<th> <span>{{r.cell[0]}}</span></th>
+							<td>{{r.cell[1]}}</td>
+							<td>{{r.cell[2]}}</td>
+							<td>{{r.cell[3]}}</td>
+							<td>{{r.cell[4]}}</td>
+							<td>{{r.cell[5]}}</td>
+							<td>{{r.cell[6]}}</td>
+							<td>{{r.cell[7]}}</td>
+							<td>{{r.cell[8]}}</td>
+							<td>{{r.cell[9]}}</td>
+							<td>{{r.cell[10]}}</td>
+							<td>{{r.cell[11]}}</td>
+						</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div><script>
+	;(function($)
+	{
+		$('.table-responsive').responsiveTable();
+	})(jQuery);
+</script>

@@ -1,0 +1,224 @@
+<!--
+<page-title ng-if="layoutOptions.pageTitles" title="Structure Ad Hoc" description=""></page-title>
+-->
+<style>
+    select {
+        height: 30px;
+    }
+
+    select[multiple] {
+        height: auto;
+    }
+
+</style>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Structure Ad Hoc
+    </div>
+    <div class="panel-body" style="display:none" id="sah-panel">
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label>Report Level:</label>
+                <select class="form-control" id="sah-reportlevel">
+                    <option ng-repeat="m in reportLevels" on-finish-render="ngRepeatFinished">{{m}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">MME Pool:</label>
+                <select ng-model="mmePool" ng-options="m.value as m.text for m in mmePools"
+                        class="form-control"
+                        id="sah-mmePool" class="form-control" multiple required="">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Cell Group:</label>
+                <select ng-model="cellGroup" ng-options="m as m for m in cellGroups"
+                        class="form-control"
+                        id="sah-cellGroup" class="form-control" multiple required="">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Region:</label>
+                <select ng-model="sah.region" ng-options="m as m for m in regions"
+                        class="form-control" id="ms-region"
+                        class="form-control" multiple required="">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Market:</label>
+                <select ng-model="sah.market" ng-options="m as m for m in markets"
+                        class="form-control" id="ms-market"
+                        multiple required="">
+                </select>
+            </div>
+        </div>
+
+
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label>eNodeB:</label>
+                <select ng-model="enodeb" ng-options="m.value as m.text for m in eNodeBs"
+                        id="enodeB" class="form-control" multiple required="" style="height:500px">
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Sort by:</label>
+                <label class="radio-inline">
+                    <input type="radio" name="radio-2" checked>
+                    Name
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="radio-2">
+                    eNodeB
+                </label>
+                <label class="checkbox-inline"><input type="checkbox"> Show Carrier-Aggregated</label>
+            </div>
+        </div>
+
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label>EUTranCell</label>
+                <select ng-model="sah.eutrancell" ng-options="m as m for m in eutrancells"
+                        class="form-control" id="sah-eutrancell"
+                        multiple required="">
+                </select>
+
+                <label>Carrier</label>
+                <select ng-model="sah.carrier" ng-options="m as m for m in carriers"
+                        class="form-control" id="sah-carrier"
+                        multiple required="">
+                </select>
+
+
+                <label>End Date:</label>
+
+                <div class="input-group">
+
+                    <input type="text" id="endDate" auto-close="true" class="form-control datepicker"
+                           data-format="mm/dd/yyyy">
+
+                    <div class="input-group-addon">
+                        <a href=""><i class="linecons-calendar"></i></a>
+                    </div>
+                    <!--<span style="font-size:.6em;" class="input-group-addon">Last Week</span>-->
+                    <!--<span style="font-size:.6em;" class="input-group-addon">Last Month</span>-->
+                </div>
+                <!--<div class="form-group">-->
+                <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="radio-2" checked>-->
+                <!--Today-->
+                <!--</label>-->
+                <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="radio-2">-->
+                <!--Yesterday-->
+                <!--</label>-->
+                <!--</div>-->
+            </div>
+
+
+            <div class="form-group links-block left-sep">
+                <label class="col-md-6 control-label" style="padding-left:0px;padding-top: 5px">Days to Trend:</label>
+
+                <div class="input-group spinner" data-step="1">
+                <span class="input-group-btn">
+                    <button class="btn btn-gray" data-type="decrement">-</button>
+                </span>
+                    <input type="text" class="form-control text-center" value="1"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-gray" data-type="increment">+</button>
+                </span>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Report Type:</label>
+                <select ng-model="sah.reportType" ng-options="m.value as m.text for m in reportTypes"
+                        id="sah-reportType" class="form-control" required="">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div class="links-block left-sep">
+                    <label class="checkbox-inline">
+                        <input type="checkbox">
+                        Peak
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox">
+                        Off Peak
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Exclude Maint
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Weekdays Only
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Exclude holidays
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Exclude Totals
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Offset TimeZone
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-2">
+            <div class="form-group">
+                <label>Content:</label>
+                <select ng-model="content" ng-options="m.value as m.text for m in contents"
+                        id="content" class="form-control" multiple required="" style="height:500px">
+                </select>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        Include Raw Pegs
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xs-1">
+
+            <button class="btn btn-success btn-icon btn-block btn-lg disabled">
+                <!--
+                <i class="fa-check"></i>
+                -->
+                <i></i>
+                <span>Submit</span>
+            </button>
+        </div>
+    </div>
+</div>
+

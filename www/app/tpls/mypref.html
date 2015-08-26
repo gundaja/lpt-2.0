@@ -1,0 +1,221 @@
+<page-title ng-if="layoutOptions.pageTitles" title="" description=""></page-title>
+
+<!-- Tabbed panel -->
+<div class="container" style="padding:20px" id="mypref">
+    <div ng-init="tabbed_panel_active = 1;" class="panel panel-default panel-tabs">
+        <!-- Add class "collapsed" to minimize the panel -->
+        <div class="panel-heading">
+            <h3 class="panel-title">My Preferences</h3>
+
+            <div class="panel-options">
+
+                <ul class="nav nav-tabs">
+                    <li ng-class="{'active': tabbed_panel_active == 1}">
+                        <a href="" ng-click="tabbed_panel_active = 1">My Profile</a>
+                    </li>
+                    <li ng-class="{'active': tabbed_panel_active == 2}">
+                        <a href="" ng-click="tabbed_panel_active = 2">My MME Pools and Markets</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="tab-content">
+
+                <div class="tab-pane" ng-class="{'active': tabbed_panel_active == 1}">
+		    <form role="form" class="validate ng-pristine ng-valid" method="post">
+                    <section class="profile-env">
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+
+                                <!-- User Info Sidebar -->
+                                <div class="user-info-sidebar">
+
+                                    <a href="" class="user-img">
+                                        <img src="assets/images/user-4.png" alt="user-img"
+                                             class="img-cirlce img-responsive img-thumbnail"/>
+                                    </a>
+
+                                    <a href="" class="user-name">
+                                        {{userInfo.firstName}} {{userInfo.lastName}}
+                                    </a>
+
+                                    <hr/>
+
+                                    <ul class="list-unstyled user-info-list">
+                                        <li>
+                                            Max # of scheduled reports : <strong>{{userInfo.maxNo}}</strong>
+                                        </li>
+                                        <li>
+                                            Current disk usage (MB): <strong>{{userInfo.currentDiskUsage}}</strong>
+                                        </li>
+                                        <li>
+                                            Max disk usage (MB): <strong>{{userInfo.maxDiskUsage}}</strong>
+                                        </li>
+
+                                        <li>
+                                            Purge limit (days): <strong>{{userInfo.purgeLimit}}</strong>
+                                        </li>
+                                        <li>
+                                            Max disk usage (MB): <strong>{{userInfo.maxDiskUsage}}</strong>
+                                        </li>
+                                        <li>
+                                            Access level: <strong>{{userInfo.accessLevel}}</strong>
+                                        </li>
+                                        <li>
+                                            Status: <strong>{{userInfo.status}} <span class="user-status is-online"></strong>
+                                        </li>
+                                    </ul>
+
+                                    <hr/>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-8">
+
+                                    <!--
+                                    <label class="control-label">Select list</label>
+
+                                    <script type="text/javascript">
+                                        jQuery(document).ready(function ($) {
+                                            $("#s2example-1").select2({
+                                                placeholder: 'Select your region...',
+                                                allowClear: true
+                                            }).on('select2-open', function () {
+                                                // Adding Custom Scrollbar
+                                                $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                                            });
+
+                                        });
+                                    </script>
+
+                                    <select class="form-control" id="s2example-1">
+                                        <option></option>
+                                        <option>Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>Arizona</option>
+                                        <option>Arkansas</option>
+                                        <option>California</option>
+
+                                        </optgroup>
+                                    </select>
+                                    -->
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Profile Info
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+
+                                                <label>Region:</label>
+                                                <select ng-model="regionList[0]" ng-options="m as m for m in regionList"
+                                                        id="selSwitch" class="form-control" required="">
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label>Market:</label>
+                                                <select ng-model="marketList[0]" ng-options="m as m for m in marketList"
+                                                        id="selSwitch" class="form-control" required="">
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label for="field-1">Email Address:</label>
+
+                                                <div class="input-group input-group-sm input-group-minimal">
+                                                    <span class="input-group-addon">
+                                                        <i class="linecons-mail"></i>
+                                                    </span>
+                                                    <input type="text" ng-model="userInfo.emailAddress" class="form-control" inputmask
+                                                           data-mask="email"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label for="field-1">Mobile Number:</label>
+
+                                                <div class="input-group input-group-sm input-group-minimal">
+                                                    <span class="input-group-addon">
+                                                        <i class="linecons-mobile"></i>
+                                                    </span>
+                                                    <input type="text" ng-model="userInfo.mobileNumber" class="form-control" inputmask
+                                                           data-mask="phone"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">
+                                                    HeadQuarters Region
+                                                </label>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label>TimeZone:</label>
+                                                <select ng-model="timeZones[0]" ng-options="m as m for m in timeZones"
+                                                        id="selSwitch" class="form-control" required="">
+                                                </select>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+                <div class="tab-pane" ng-class="{'active': tabbed_panel_active == 2}">
+                    <div class="bootstrap-duallistbox-container row form-group">
+                            <label>All MME Pools:</label>
+                            <select ng-model="regionList[0]" multiple ng-options="m as m for m in regionList"
+                                    id="selSwitch" class="form-control" required="" bs-dualListbox>
+                            </select>
+                    </div>
+
+                    <div class="bootstrap-duallistbox-container row form-group">
+                        <label>All Markets:</label>
+                        <select ng-model="regionList[0]" multiple="multiple" ng-options="m as m for m in marketList"
+                                id="selSwitch" class="form-control" required="" bs-dualListbox>
+                        </select>
+                    </div>  
+
+
+		    <div class="bootstrap-duallistbox-container row form-group">
+                        <label>All Markets:</label>
+                        <select ng-model="regionList[0]" multiple="multiple" ng-options="m as m for m in marketList"
+                                id="selSwitch" class="form-control" required="" bs-dualListbox>
+                        </select>
+                    </div> 
+            </div>
+            
+            
+            <div ng-repeat="m in regionList" on-finish-render="ngRepeatFinished">
+
+
+        </div>
+	</form>
+    </div>
+    		<hr>
+            <button type="submit" class="btn btn-success btn-lg center-block">Save</button>
+
+    </div>
+</div>

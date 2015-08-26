@@ -1,0 +1,106 @@
+<style>
+/**
+    .slider {
+        min-height: 250px;
+        background: #fff none repeat scroll 0 0;
+    }
+
+    .slick-slide {
+        background: #fff none repeat scroll 0 0;
+    }
+
+    .slider img {
+        max-height: 250px;
+        max-width: 250px;
+    }
+  **/ 
+    .slider {
+        min-height: 250px;
+    }
+
+    .slick-slide {
+        background: #fff none repeat scroll 0 0;
+    }
+
+    .slider img {
+        background: #fff none repeat scroll 0 0;
+    }
+
+
+</style>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Performance Charts &nbsp;
+                <small>as of {{currentDate | date:'yyyy-MM-dd HH:mm:ss'}}</small>
+            </h3>
+
+            <div class="panel-options">
+                <a href="" data-toggle="reload" ng-click="refresh()">
+                    <i class="fa-rotate-right"></i>
+                </a>
+
+                <a href="" data-toggle="panel">
+                    <span class="collapse-icon">&ndash;</span>
+                    <span class="expand-icon">+</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="panel-body" ng-init="refresh()">
+		<!--
+            <slick class="slider single-item" dots="true" infinite="true" touch-move=true>
+                <div ng-repeat="m in slides" on-finish-render="ngRepeatFinished"><img data-lazy="{{m}}"></div>
+            </slick>
+		-->
+            <slick class="slider single-item" dots="true" infinite="true" touch-move=true>
+                <div class="col-sm-3" ng-repeat="m in slides" on-finish-render="ngRepeatFinished">
+		    <div class="thumbnail"> <img data-lazy="{{m}}"></div>
+	        </div>
+	    </slick>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">News</h3>
+
+            <div class="panel-options">
+                <a href="" data-toggle="reload" ng-click="refresh()">
+                    <i class="fa-rotate-right"></i>
+                </a>
+
+                <a href="" data-toggle="panel">
+                    <span class="collapse-icon">&ndash;</span>
+                    <span class="expand-icon">+</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <ul class="list-unstyled">
+
+                <li ng-repeat="n in news">
+                    <div class="xe-comment-entry">
+
+                        <div class="xe-comment">
+                            <a href="" class="xe-user-name ">
+                                <strong ng-if="n.area==-9999">ALL</strong>
+                                <strong ng-if="n.area!=-9999">{{n.areaName}}</strong>
+                                <ul class="list-unstyled" ng-style="{color: getCssColor(n.area)}">
+                                    <li ng-repeat="item in n.news">{{item}}</li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+                    <hr/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

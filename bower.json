@@ -1,0 +1,22 @@
+{
+  "name": "lpt web",
+  "version": "0.0.0",
+  "homepage": "https://localhost:8483/lptweb",
+  "main": "www/index.html",
+  "license": "MIT",
+  "private": true,
+  "directory" : "www/assets",
+  "dependencies": {
+    "highcharts-ng" : "",
+    "roboto-fontface" : "",
+    "slick-carousel": "",
+    "angular-slick": "",
+    "bootstrap-duallistbox":"",
+    "angular-bootstrap-duallistbox":"~0.0.2",
+    "ui-select" : "",
+    "ng-js-tree": ""
+  },
+  "resolutions": {
+    "angular": "~1.3.x"
+  }
+}
