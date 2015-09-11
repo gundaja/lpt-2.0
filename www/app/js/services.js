@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('xenon.services', []).
+<<<<<<< HEAD
     service('$lptServices', function ($http) {
         this.getUserInfo = function () {
             return {
@@ -37,10 +38,43 @@ angular.module('xenon.services', []).
 
         this.getUserReportsPerRegion = function () {
             return $http.get('static/report.json', {cache: true}).then(function (result) {
+=======
+    service('$lptServices', function($http) {
+        this.getUserInfo = function() {
+                return {"firstName": "Jayson",
+                    "lastName": "Gundayao",
+                    "mobileNumber": "9255961383",
+                    "maxNo": "5",
+                    "currentDiskUsage": "0",
+                    "maxDiskUsage": "100",
+                    "purgeLimit": "20",
+                    "accessLevel": "USER",
+                    "status": "Active",
+                    "emailAddress": "Jayson.Gundayao@vzw.com",
+                    "regionId" : "Central Texas",
+                    "marketId":"TX Austin"
+                }
+        },
+
+        this.getRegionList = function() {
+            return ["S. California"];
+        },
+
+        this.getMarketList = function() {
+            return ["AK Alaska", "CA Bakersfield", "CA Central LA", "CA Downtown LA Newhall"]
+        },
+        this.getTimeZones = function() {
+            return ["Hawaiian", "Alaskan", "Pacific", "Mountain", "Central", "Eastern"]
+        },
+
+        this.getUserReportsPerRegion = function() {
+            return $http.get('static/report.json', { cache: true }).then(function(result) {
+>>>>>>> origin/master
                 return result;
             });
         },
 
+<<<<<<< HEAD
         this.getReportsByUser = function (userid) {
             var url = 'static/user_report.json';
             if (userid != "zbmoin") {
@@ -48,25 +82,49 @@ angular.module('xenon.services', []).
             }
 
             return $http.get(url, {cache: true}).then(function (result) {
+=======
+        this.getReportsByUser = function(userid) {
+            var url = 'static/user_report.json';
+            if (userid != "Alimoh5") {
+                url = 'static/user_report1.json';
+            }
+
+            return $http.get(url, { cache: true }).then(function(result) {
+>>>>>>> origin/master
                 return result;
             });
         },
 
+<<<<<<< HEAD
         this.getEnodeByUser = function (userid) {
             var url = 'static/enodeb.json';
 
             return $http.get(url, {cache: true}).then(function (result) {
+=======
+        this.getEnodeByUser = function(userid) {
+            var url = 'static/enodeb.json';
+
+            return $http.get(url, { cache: true }).then(function(result) {
+>>>>>>> origin/master
                 return result;
             });
         },
 
+<<<<<<< HEAD
         this.getAlerts = function () {
+=======
+        this.getAlerts = function() {
+>>>>>>> origin/master
             return [{
                 "name": "Alert 1223",
                 "description": "eNodeB:038001 has TP <3",
                 "link": "",
                 "highlightFlag": "N"
+<<<<<<< HEAD
             },
+=======
+                },
+>>>>>>> origin/master
                 {
                     "name": "Alert 1111",
                     "description": "eNodeB:038002 has TP <2",
@@ -88,6 +146,7 @@ angular.module('xenon.services', []).
             ]
         },
 
+<<<<<<< HEAD
         this.getReportLevels = function () {
             return ["MME Pool", "MME", "MME Service", "MME Service Member", "MME Cabinet", "MME Shelf"];
         },
@@ -428,6 +487,95 @@ angular.module('xenon.services', []).
                         "news": []
                     }]
             }
+=======
+        this.getListOfNews = function () {
+            return [{
+                "area": 160,
+                "areaName": "Alaska",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 5,
+                "areaName": "Carolinas/Tennessee",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "Y",
+                "news": []
+            }, {
+                "area": 4,
+                "areaName": "Florida",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "Y",
+                "news": ["Test.", "Test"]
+            }, {
+                "area": 6,
+                "areaName": "Georgia/Alabama",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 7,
+                "areaName": "Great Plains",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 8,
+                "areaName": "Illinois/Wisconsin",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 21,
+                "areaName": "Kansas/Missouri",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 9,
+                "areaName": "Michigan/Indiana/Kentucky",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 44,
+                "areaName": "MidWest IL/WI LRA",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 2,
+                "areaName": "N. California",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": ["This is line1.", "This is line2.", "This is line3."]
+            }, {
+                "area": 1,
+                "areaName": "Pacific Northwest",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": ["This is line1.", "This is line2.", "This is line3."]
+            }, {
+                "area": 3,
+                "areaName": "S. California",
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": 42,
+                "areaName": null,
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": []
+            }, {
+                "area": -9999,
+                "areaName": null,
+                "class": "bus.home.NewsModel",
+                "highlightFlag": "N",
+                "news": ["Irisview exports are delayed by 4 hours to maintain data integrity and are imported at the ENB level. Irisview pegs can only be reported at the ENB level or higher."]
+            }, {"area": 61, "areaName": null, "class": "bus.home.NewsModel", "highlightFlag": "N", "news": []}]
+        }
+>>>>>>> origin/master
     }).
 
 
@@ -703,4 +851,9 @@ angular.module('xenon.services', []).
             });
         }
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 );

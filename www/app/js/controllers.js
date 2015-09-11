@@ -14,7 +14,11 @@ angular.module('xenon.controllers', []).
         $rootScope.isLoginPage = false;
         $rootScope.isLightLoginPage = false;
         $rootScope.isLockscreenPage = false;
+<<<<<<< HEAD
         $rootScope.isMainPage = true;
+=======
+        $rootScope.isMainPage = false;
+>>>>>>> origin/master
 
         $scope.userInfo = $lptServices.getUserInfo();
         $scope.regionList = $lptServices.getRegionList();
@@ -93,8 +97,11 @@ angular.module('xenon.controllers', []).
         $rootScope.isLockscreenPage = false;
         $rootScope.isMainPage = false;
 
+<<<<<<< HEAD
         $scope.news = $lptServices.getListOfNews();
 
+=======
+>>>>>>> origin/master
         $scope.getDate = function () {
             return new Date();
         }
@@ -103,6 +110,7 @@ angular.module('xenon.controllers', []).
         $scope.slides = [];
         $scope.currentDate = "";
 
+<<<<<<< HEAD
         $scope.getCssColor = function(area) {
             if (area == -9999) {
                 return "red";
@@ -111,6 +119,8 @@ angular.module('xenon.controllers', []).
         }
 
 
+=======
+>>>>>>> origin/master
 
         $scope.refresh = function () {
             $scope.slides = [
@@ -151,6 +161,7 @@ angular.module('xenon.controllers', []).
         });
     }).
 
+<<<<<<< HEAD
     controller('StrucAdhocCntrl', function ($scope, $rootScope, $lptServices) {
         $rootScope.isLoginPage = false;
         $rootScope.isLightLoginPage = false;
@@ -267,6 +278,8 @@ angular.module('xenon.controllers', []).
         $("#sah-panel").show();
     }).
 
+=======
+>>>>>>> origin/master
 
     controller('MemberAccountCtrl', function ($scope, $rootScope) {
         $rootScope.isLoginPage = false;
@@ -294,21 +307,61 @@ angular.module('xenon.controllers', []).
         $rootScope.isLockscreenPage = false;
         $rootScope.isMainPage = true;
 
+<<<<<<< HEAD
+=======
+
+//        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+//            console.log('$stateChangeStart to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
+//        });
+//        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+//            console.log('$stateChangeError - fired when an error occurs during transition.');
+//            console.log(arguments);
+//        });
+//        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+//            console.log('$stateChangeSuccess to ' + toState.name + '- fired once the state transition is complete.');
+//        });
+//// $rootScope.$on('$viewContentLoading',function(event, viewConfig){
+////   // runs on individual scopes, so putting it in "run" doesn't work.
+////   console.log('$viewContentLoading - view begins loading - dom not rendered',viewConfig);
+//// });
+//        $rootScope.$on('$viewContentLoaded', function (event) {
+//            console.log('$viewContentLoaded - fired after dom rendered', event);
+//        });
+//        $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
+//            console.log('$stateNotFound ' + unfoundState.to + '  - fired when a state cannot be found by its name.');
+//            console.log(unfoundState, fromState, fromParams);
+//        });
+
+>>>>>>> origin/master
         $rootScope.layoutOptions = {
             horizontalMenu: {
                 isVisible: true,
                 isFixed: true,
                 minimal: true,
                 clickToExpand: false,
+<<<<<<< HEAD
                 isMenuOpenMobile: false
             },
             sidebar: {
                 isVisible: false,
+=======
+
+                isMenuOpenMobile: false
+            },
+            sidebar: {
+                isVisible: true,
+>>>>>>> origin/master
                 isCollapsed: true,
                 toggleOthers: true,
                 isFixed: true,
                 isRight: false,
+<<<<<<< HEAD
                 isMenuOpenMobile: false,
+=======
+
+                isMenuOpenMobile: false,
+
+>>>>>>> origin/master
                 // Added in v1.3
                 userProfile: true
             },
@@ -331,7 +384,12 @@ angular.module('xenon.controllers', []).
             userInfoNavVisible: false
         };
 
+<<<<<<< HEAD
         //$layout.loadOptionsFromCookies(); // remove this line if you don't want to support cookies that remember layout changes
+=======
+        $layout.loadOptionsFromCookies(); // remove this line if you don't want to support cookies that remember layout changes
+
+>>>>>>> origin/master
 
         $scope.updatePsScrollbars = function () {
             var $scrollbars = jQuery(".ps-scrollbar:visible");
@@ -461,6 +519,10 @@ angular.module('xenon.controllers', []).
         public_vars.$settingsPaneIn = public_vars.$settingsPane.find('.settings-pane-inner');
     }).
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     // TODO: Remove this
     controller('ChatCtrl', function ($scope, $element) {
         var $chat = jQuery($element),
@@ -468,6 +530,10 @@ angular.module('xenon.controllers', []).
 
         $chat.find('.chat-inner').perfectScrollbar(); // perfect scrollbar for chat container
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         // Chat Conversation Window (sample)
         $chat.on('click', '.chat-group a', function (ev) {
             ev.preventDefault();

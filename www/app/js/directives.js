@@ -849,7 +849,10 @@ angular.module('xenon.directives', []).
 						endDate: attrDefault($this, 'endDate', ''),
 						daysOfWeekDisabled: attrDefault($this, 'disabledDays', ''),
 						startView: attrDefault($this, 'startView', 0),
+<<<<<<< HEAD
 						showButtonPanel : attrDefault($this, 'showButtonPanel', true)
+=======
+>>>>>>> origin/master
 						//rtl: rtl()
 					},
 					$n = $this.next(),

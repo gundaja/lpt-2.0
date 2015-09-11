@@ -13,10 +13,14 @@
     "angular-slick": "",
     "bootstrap-duallistbox":"",
     "angular-bootstrap-duallistbox":"~0.0.2",
+<<<<<<< HEAD
     "ui-select" : "",
     "ng-js-tree": ""
   },
   "resolutions": {
     "angular": "~1.3.x"
+=======
+    "ng-js-tree": ""
+>>>>>>> origin/master
   }
 }

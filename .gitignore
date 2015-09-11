@@ -1,4 +1,7 @@
 node_modules/*
 www/components/*
 www/assets/*
+<<<<<<< HEAD
 .idea/*
+=======
+>>>>>>> origin/master

@@ -51,6 +51,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 		state('app.reports-struc-adhoc', {
 			url: '/reports-struc-adhoc',
 			templateUrl: appHelper.templatePath('reports/sah'),
+<<<<<<< HEAD
 			controller: 'StrucAdhocCntrl',
             resolve: {
                 jqui: function ($ocLazyLoad) {
@@ -97,6 +98,22 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
                     ]);
                 }
             }
+=======
+			resolve: {
+				fwDependencies: function($ocLazyLoad){
+					return $ocLazyLoad.load([
+						ASSETS.core.bootstrap,
+						ASSETS.core.jQueryUI,
+						ASSETS.forms.jQueryValidate,
+						ASSETS.forms.inputmask,
+						ASSETS.forms.multiSelect,
+						ASSETS.forms.datepicker,
+						ASSETS.forms.selectboxit,
+						ASSETS.forms.formWizard,
+					]);
+				}
+			},
+>>>>>>> origin/master
 		}).
 
 
@@ -167,6 +184,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 			}
 		}).
 
+<<<<<<< HEAD
 		// Login and Register
 		state('loginregister', {
 			url: '/login',
@@ -191,6 +209,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
 
 			}
 		}).
+=======
+>>>>>>> origin/master
 
 
 		// Dashboards
@@ -1050,10 +1070,13 @@ app.constant('ASSETS', {
 			appHelper.assetPath('js/select2/select2.min.js'),
 		],
 
+<<<<<<< HEAD
 		'ui.select2': [
 			appHelper.assetPath('components/ui-select/src/select3.js')
 		],
 
+=======
+>>>>>>> origin/master
 		'daterangepicker': [
 			appHelper.assetPath('js/daterangepicker/daterangepicker-bs3.css'),
 			appHelper.assetPath('js/daterangepicker/daterangepicker.js'),
