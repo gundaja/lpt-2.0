@@ -158,6 +158,8 @@ angular.module('xenon.controllers', []).
         $rootScope.isMainPage = false;
         $scope.sah = {};
 
+        $scope.isCollapsed = true;
+
         $scope.regions = $lptServices.getRegionList();
         $scope.mmePools = $lptServices.getAllMmePools();
         $scope.markets = $lptServices.getMarketList();
@@ -178,6 +180,7 @@ angular.module('xenon.controllers', []).
         $scope.carriers = [1,2,3,4,5,6,7,8,9];
         $scope.sah.carrier = $scope.eutrancells;
 
+
         $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
             console.log("here..");
             $("#sah-eutrancell").select2({
@@ -188,13 +191,6 @@ angular.module('xenon.controllers', []).
                 //$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
             });
 
-            $("#sah-carrier").select2({
-                placeholder: 'Select EUTranCell',
-                allowClear: true
-            }).on('select2-open', function () {
-                // Adding Custom Scrollbar
-                //$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
-            });
 
             $("#sah-reportlevel").selectBoxIt({
                 showFirstOption: false,
@@ -204,6 +200,16 @@ angular.module('xenon.controllers', []).
             $("#sah-reportType").selectBoxIt({
                 showFirstOption: true,
                 "native": true
+            });
+
+
+
+            $("#sah-carrier").select2({
+                placeholder: 'Select EUTranCell',
+                allowClear: true
+            }).on('select2-open', function () {
+                // Adding Custom Scrollbar
+                //$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
             });
 
             $("#ms-region").select2({
@@ -239,9 +245,11 @@ angular.module('xenon.controllers', []).
                 $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
             });
 
+
             $('#endDate')
                 .datepicker({
                     format: 'mm/dd/yyyy',
+                    setDate: new Date(),
                     todayBtn: true,
                     clearBtn: false,
                     todayHighlight: true,
@@ -250,7 +258,8 @@ angular.module('xenon.controllers', []).
                 .on('changeDate', function(e) {
                     $(this).datepicker('hide');
                     // Revalidate the date field
-//                    $('#eventForm').formValidation('revalidateField', 'date');
+                    $('#eventForm').formValidation('revalidateField', 'date');
+                    console.log($scope.sah.endDate);
                 });
 
         });
